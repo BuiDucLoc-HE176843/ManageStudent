@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "Edit Student";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Edit Student</h2>
+    <form asp-action="EditStudent" method="post">
+        <input type="hidden" name="Id" value="@ViewBag.getInfor.Id"/>
+
+        <div class="mb-3">
+            <label  class="form-label">Student Name</label>
+            <input value="@ViewBag.getInfor.Name" name="Name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label  class="form-label">Code</label>
+            <input value="@ViewBag.getInfor.Code" name="Code" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Date of Birth</label>
+            <input value="@ViewBag.getInfor.Dob?.ToString("yyyy-MM-dd")" name="Dob" class="form-control" type="date" required>
+        </div>
+
+        <div class="mb-3">
+            <label  class="form-label">Phone</label>
+            <input value="@ViewBag.getInfor.Phone" name="Phone" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label  class="form-label">Address</label>
+            <input value="@ViewBag.getInfor.Address" name="Address" class="form-control">
+        </div>
+
+           <div class="mb-3">
+            <label class="form-label">Select Class</label>
+            <select name="ClassId" class="form-select" required>
+                <option value="">-- Select Class --</option>
+                @foreach (var cls in ViewBag.listClass)
+                {
+                            <option value="@cls.Id">@cls.Code</option>
+                }
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="ManageStudent" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

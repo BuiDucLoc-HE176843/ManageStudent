@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "Edit Subject";
+}
+
+<style>
+    /* Center the form container */
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+    }
+
+    .btn-success { background: #28a745; color: white; }
+    .btn-secondary { background: #6c757d; color: white; }
+</style>
+
+<div class="form-container">
+    <h3>Edit Subject</h3>
+
+    <form method="post" asp-action="EditSubject" asp-controller="Admin">
+        <input type="hidden" name="Id" value="@ViewBag.subject.Id" />
+
+        <label for="Name">Subject Name</label>
+        <input type="text" id="Name" name="Name" value="@ViewBag.subject.Name" required placeholder="Enter subject name">
+
+        <label for="Code">Subject Code</label>
+        <input type="text" id="Code" name="Code" value="@ViewBag.subject.Code" required placeholder="Enter subject code">
+
+        <label for="Category">Category</label>
+        <select id="Category" name="Category" required>
+            <option value="">-- Select Category --</option>
+            @foreach (var category in ViewBag.Categories)
+            {
+                            <option value="@category.Id" selected="@(ViewBag.subject.Category == category.Id ? "selected" : null)">
+                    @category.Name
+                    </option>
+            }
+        </select>
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a href="@Url.Action("ManageSubjects", "Admin")" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

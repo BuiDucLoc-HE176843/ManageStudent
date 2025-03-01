@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Manage Student in Class";
+}
+
+<h2>Manage Students in Classes</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<form method="post" action="@Url.Action("AddStudentInClass", "Admin")">
+    <div class="form-group">
+        <label for="studentId">Select Student:</label>
+        <select class="form-control" name="studentId" id="studentId" required>
+            <option value="">-- Select Student --</option>
+            @foreach (var student in ViewBag.Students)
+            {
+                    <option value="@student.Id">@student.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="classId">Select Class:</label>
+        <select class="form-control" name="classId" id="classId" required>
+            <option value="">-- Select Class --</option>
+            @foreach (var cls in ViewBag.Classes)
+            {
+                    <option value="@cls.Id">@cls.Code</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Student to Class</button>
+</form>
+@if (!string.IsNullOrEmpty(ViewBag.sExisted))
+{
+                            <div style="color:red" class="alert alert-danger">@ViewBag.sExisted</div>
+}
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+    margin: 0;
+}
+
+.container {
+    width: 400px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+</style>

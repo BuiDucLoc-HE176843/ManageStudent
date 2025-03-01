@@ -1,0 +1,118 @@
+﻿<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.table {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+    background: #343a40;
+    color: white;
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+}
+
+.btn-sm {
+    margin: 2px;
+    border-radius: 5px;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+</style>
+
+@{
+    ViewData["Title"] = "Student Class List";
+}
+
+<div class="container">
+    <h2>Student Class List</h2>
+     <form method="get" asp-action="SearchClass" asp-controller="Admin" class="d-flex">
+    <input type="text" id="searchInput" name="Search" class="form-control mb-3" placeholder="Tìm kiếm học sinh..." value="@Context.Request.Query["Search"]">
+    <button type="submit" class="btn btn-primary mx-2">Tìm Kiếm</button>
+    <a href="@Url.Action("ManageClass", "Admin")" class="btn btn-secondary">Refresh</a>
+</form>
+    @if (TempData["ErrorMessage"] != null)
+    {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Class ID</th>
+                <th>Class Name</th>
+     
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.StudentClasses != null)
+            {
+                @foreach (var item in ViewBag.StudentClasses)
+                {
+                            <tr>
+                                <td>@item.StudentId</td>
+                                <td>@(item.Student != null ? item.Student.Name : "No Student")</td>
+                                <td>@item.ClassId</td>
+                                <td>@(item.Class != null ? item.Class.Code : "No Class")</td>
+                            </tr>
+                }
+            }
+            else
+            {
+                    <tr>
+                        <td colspan="5" class="text-center">No data available</td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+
+            <a href="@Url.Action("AddStudentInClass", "Admin")" class="btn btn-success btn-sm">Add</a>
+            <a href="@Url.Action("ChangeClass", "Admin")" class="btn btn-warning btn-sm">Change</a>
+             <a href="@Url.Action("DeleteStudent", "Admin")" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</a>
+</div>
+

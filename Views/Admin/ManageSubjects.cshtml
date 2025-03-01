@@ -1,0 +1,137 @@
+﻿<style>
+    /* Center the main container */
+    .table-container {
+        max-width: 900px;
+        margin: 40px auto; /* Center horizontally with spacing */
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        text-align: center; /* Center content */
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #f8f9fa;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    th {
+        background: #343a40;
+        color: white;
+        font-weight: bold;
+        padding: 12px;
+        text-transform: uppercase;
+    }
+
+    td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        color: #333;
+    }
+
+    tr:nth-child(even) {
+        background: #e9ecef;
+    }
+
+    tr:hover {
+        background: #ced4da;
+        transition: 0.3s;
+    }
+
+    /* Centered form */
+    form {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        width: 60%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Button Styling */
+    .btn {
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-success { background: #28a745; color: white; }
+    .btn-warning { background: #ffc107; color: black; }
+    .btn-danger { background: #dc3545; color: white; }
+    .btn-primary { background: #007bff; color: white; }
+    .btn-secondary { background: #6c757d; color: white; }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+</style>
+@{
+    ViewData["Title"] = "Manage Subjects";
+}
+
+<div class="table-container">
+    <h3>Manage Subjects</h3>
+    <a href="/Admin/AddSubject" class="btn btn-success mb-3">Add Subject</a>
+    <form method="get" asp-action="SearchSubjects" asp-controller="Admin">
+        <input type="text" id="searchInput" name="Search" placeholder="Search subjects..." value="@Context.Request.Query["Search"]">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a href="@Url.Action("ManageSubjects", "Admin")" class="btn btn-secondary">Refresh</a>
+    </form>
+    <table class="table">
+        <thead>
+            <tr style="background: cornflowerblue;">
+                <th>Name</th>
+                <th>Code</th>
+                <th>CategoryID</th>
+                <th>Category Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var subject in ViewBag.Subjects)
+            {
+                    <tr id="row-@subject.Id">
+                        <td>@subject.Name</td>
+                        <td>@subject.Code</td>
+                        <td>@subject.Category</td>
+                        <td>@subject.CategoryName</td>
+                        <td>
+                            <a href="/Admin/EditSubject/@subject.Id" class="btn btn-warning btn-sm">Edit</a>
+                            <button class="btn btn-danger btn-sm" onclick="confirmDelete('@subject.Id')">Delete</button>
+                        </td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+    @if (TempData["ErrorMessage"] != null)
+    {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+</div>
+
+<script>
+    function confirmDelete(subId) {
+        console.log("Deleting account: " + subId);  
+        if (confirm("Are you sure you want to delete this subjects?")) {
+            window.location.href = "@Url.Action("RemoveSubject", "Admin")" + "?subId=" + subId;
+        }
+    }
+
+</script>

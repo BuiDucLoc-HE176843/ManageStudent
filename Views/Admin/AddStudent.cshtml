@@ -1,0 +1,55 @@
+﻿@model ManageCoure.Models.Account
+
+@{
+    ViewData["Title"] = "Add Student";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">Add New Student</h2>
+    <form asp-action="AddStudent" method="post">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Student Name</label>
+            <input asp-for="Name" name="Name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Dob" class="form-label">Date of Birth</label>
+            <input asp-for="Dob" name="Dob" class="form-control" type="date" required>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Phone" class="form-label">Phone</label>
+            <input asp-for="Phone" name="Phone" class="form-control" required>
+        </div>
+        @if (!string.IsNullOrEmpty(ViewBag.PhoneExit))
+        {
+                            <div style="color:red" class="alert alert-danger">@ViewBag.PhoneExit</div>
+        }
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label">Address</label>
+            <input asp-for="Address" name="Address" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Code" class="form-label">Student Code</label>
+            <input asp-for="Code" name="Code" class="form-control" required>
+        </div>
+        @if (!string.IsNullOrEmpty(ViewBag.CodeExited))
+        {
+                    <div style="color:red" class="alert alert-danger">@ViewBag.CodeExited</div>
+        }
+        <div class="mb-3">
+            <label class="form-label">Select Class</label>
+            <select name="ClassId" class="form-select" required>
+                <option value="">-- Select Class --</option>
+                @foreach (var cls in ViewBag.listClass)
+                {
+                        <option value="@cls.Id">@cls.Code</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Student</button>
+        <a asp-action="ManageStudent" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
