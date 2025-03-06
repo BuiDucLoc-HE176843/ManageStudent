@@ -334,5 +334,73 @@ namespace ManageCoure.Controllers
             return RedirectToAction("ManageSubjects");
         }
 
+        public IActionResult ManageTeacher()
+        {
+            var listTeachers = _contextDAO.Accounts.Where(tc => tc.Role == 2).ToList();
+            ViewBag.listTeachers = listTeachers;
+            return View();
+        }
+
+        public IActionResult EditTeacher(int Id)
+        {
+            var teacher = _contextDAO.Accounts.FirstOrDefault(tc => tc.Id == Id);
+            ViewBag.teacher = teacher;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditTeacher(int Id, string Code, string Name, DateOnly Dob, string Email, string Phone, string Address)
+        {
+            var teacher = _contextDAO.Accounts.FirstOrDefault(tc => tc.Id == Id);
+            teacher.Code = Code;
+            teacher.Name = Name;
+            teacher.Dob = Dob;
+            teacher.Email = Email;
+            teacher.Address = Address;
+            teacher.Phone = Phone;
+            _contextDAO.SaveChanges();
+            return RedirectToAction("ManageTeacher");
+        }
+
+        public IActionResult AddTeacher()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddTeacher(string Name,string Code, string Email, string Phone, DateOnly Dob, string Address)
+        {
+            var teacher = new Account
+            {
+                Name = Name,
+                Email = Email,
+                Code = Code,
+                Phone = Phone,
+                Dob = Dob,
+                Address = Address,
+                Role = 2
+            };
+            _contextDAO.Accounts.Add(teacher);
+            _contextDAO.SaveChanges();
+            var listTeachers = _contextDAO.Accounts.Where(tc => tc.Role == 2).ToList();
+            ViewBag.listTeachers = listTeachers;
+            return View("ManageTeacher");
+        }
+
+        public IActionResult RemoveTeacher(int accountId)
+        {
+            var teacher = _contextDAO.Accounts.FirstOrDefault(tc => tc.Id == accountId);
+            if(teacher == null)
+            {
+                return NotFound();
+            }
+            _contextDAO.Accounts.Remove(teacher);
+            _contextDAO.SaveChanges();
+            var listTeachers = _contextDAO.Accounts.Where(tc => tc.Role == 2).ToList();
+            ViewBag.listTeachers = listTeachers;
+            return View("ManageTeacher");
+
+        }
+
     }
 }
