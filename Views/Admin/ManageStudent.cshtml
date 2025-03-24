@@ -1,63 +1,92 @@
 ﻿<style>
     .table-container {
-        padding: 20px;
-        background: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    }
+    padding: 25px;
+    background: #fdfaf4; /* Tông kem nhạt */
+    border-radius: 15px;
+    border: 2px solid #d4af37; /* Viền vàng nhạt */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+    font-family: 'Georgia', serif;
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        border-radius: 10px;
-        overflow: hidden;
-        background: #f8f9fa; /* Nền sáng nhẹ */
-    }
+h3 {
+    text-align: center;
+    color: #2c3e50; /* Xanh navy cổ điển */
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
 
-    th {
-        background: #343a40; /* Xám đậm sang trọng */
-        color: black;
-        font-weight: bold;
-        padding: 12px;
-        text-transform: uppercase;
-    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff8e7; /* Tông nền vàng nhạt */
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #d4af37;
+}
 
-    td {
-        padding: 12px;
-        border-bottom: 1px solid #ddd;
-        color: #333;
-    }
+th {
+    background: #2c3e50; /* Xanh navy */
+    color: #f8f9fa;
+    font-weight: bold;
+    padding: 14px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #d4af37;
+}
 
-    tr:nth-child(even) {
-        background: #e9ecef; /* Màu nền xen kẽ */
-    }
+td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+    font-size: 16px;
+}
 
-    tr:hover {
-        background: #ced4da; /* Hiệu ứng hover */
-        transition: 0.3s;
-    }
+tr:nth-child(even) {
+    background: #f9f3e9; /* Vàng nhạt cổ điển */
+}
 
-    .btn {
-        padding: 5px 10px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: bold;
-    }
+tr:hover {
+    background: #e6d5b8;
+    transition: 0.3s;
+}
 
-    .btn-success {
-        background-color: #28a745;
-        color: white;
-    }
+.btn {
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
 
-    .btn-warning {
-        background-color: #ffc107;
-        color: black;
-    }
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
 
-    .btn-danger {
-        background-color: #dc3545;
-        color: white;
-    }
+.btn-warning {
+    background-color: #ffc107;
+    color: black;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Cập nhật cho form tìm kiếm */
+input[type="text"] {
+    border: 1px solid #d4af37;
+    border-radius: 6px;
+    padding: 8px;
+    width: 250px;
+}
+
+.btn-primary {
+    background: #2c3e50;
+    border: none;
+    color: white;
+}
+
 </style>
 
 

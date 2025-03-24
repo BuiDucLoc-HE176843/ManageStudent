@@ -1,0 +1,151 @@
+﻿@*
+    Neo-Classical Style - My Class Teaching
+*@
+@{
+    ViewData["Title"] = "My Class Teaching - Neo-Classical";
+}
+
+<style>
+    body {
+        background-color: #f4ede4; /* Nền màu nhẹ */
+        font-family: 'Georgia', serif; /* Font cổ điển */
+    }
+    .card {
+        border: 2px solid #b08968;
+        border-radius: 15px;
+        background: #fff;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    }
+    .card-header {
+        background: linear-gradient(to right, #5c4b51, #8d7966);
+        color: white;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        font-weight: bold;
+    }
+    .form-control {
+        border: 1px solid #b08968;
+        border-radius: 8px;
+        padding: 10px;
+    }
+    .btn-primary {
+        background: linear-gradient(to right, #a67c52, #d4a373);
+        border: none;
+        padding: 8px 15px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+    .btn-primary:hover {
+        background: linear-gradient(to right, #8c5a38, #b08968);
+    }
+    .btn-warning {
+        background: #d4a373;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        font-weight: bold;
+    }
+    .btn-warning:hover {
+        background: #b08968;
+    }
+    .table {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    .table th {
+        background: #6d597a !important;
+        color: white;
+        text-transform: uppercase;
+    }
+    .table-hover tbody tr:hover {
+        background: #f4ede4;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header text-center">
+            <h3 class="mb-0">My Class Teaching</h3>
+        </div>
+        <div class="card-body">
+            <form method="get" asp-action="MyClass">
+                <div class="d-flex justify-content-between mb-3">
+                    <div class="d-flex">
+                        <input type="text" id="searchInput" name="search" class="form-control me-2" placeholder="Search class...">
+                        <button class="btn btn-primary">Search</button>
+                    </div>
+                    <div class="d-flex">
+                        <div class="form-group d-flex me-4 align-items-center">
+                            <span class="me-2">Subjects</span>
+                            <select class="form-control" name="subjectSelect">
+                                <option value="0">All</option>
+                                @foreach (var item in ViewBag.Subjects)
+                                {
+                                        <option value="@item.Id" selected="@(ViewBag.SubjectSelect == item.Id ? "selected" : null)">
+                                        @item.Name
+                                        </option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <span class="me-2">Semester</span>
+                            <select class="form-control" name="semesterSelect">
+                                <option value="0">All</option>
+                                @foreach (var item in ViewBag.Semesters)
+                                {
+                                        <option value="@item.Id" selected="@(ViewBag.SemesterSelect == item.Id ? "selected" : null)">
+                                        @item.Name
+                                        </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Class Code</th>
+                            <th>Class Name</th>
+                            <th>Subject</th>
+                            <th>Semester</th>
+                            <th>Number of Students</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.MyClass != null && ViewBag.MyClass.Count > 0)
+                        {
+                            int index = 1;
+                            @foreach (var item in ViewBag.MyClass)
+                            {
+                                        <tr>
+                                            <td>@index</td>
+                                            <td class="fw-bold">@item.Code</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.SubjectNavigation?.Name (@item.SubjectNavigation?.Code)</td>
+                                            <td>@item.Semester?.Name</td>
+                                            <td>@item.StudentClasses.Count</td>
+                                            <td>
+                                                <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
+                                                    Detail
+                                                </a>
+                                            </td>
+                                        </tr>
+                                index++;
+                            }
+                        }
+                        else
+                        {
+                                <tr>
+                                    <td colspan="7" class="text-center text-danger fw-bold">No classes found.</td>
+                                </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

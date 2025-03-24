@@ -4,8 +4,54 @@
     ViewData["Title"] = "Add Student";
 }
 
+<style>
+    body {
+        font-family: 'Playfair Display', serif;
+        background-color: #f5f1e8;
+        color: #2c2c2c;
+    }
+    .container {
+        max-width: 600px;
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        font-weight: bold;
+        color: #5a4a42;
+        border-bottom: 3px solid #c2a67c;
+        display: inline-block;
+        padding-bottom: 5px;
+    }
+    .form-label {
+        font-weight: bold;
+    }
+    .form-control, .form-select {
+        border-radius: 8px;
+        border: 1px solid #bba58d;
+    }
+    .btn-primary {
+        background-color: #8c7153;
+        border-color: #8c7153;
+        font-weight: bold;
+    }
+    .btn-primary:hover {
+        background-color: #755b3e;
+    }
+    .btn-secondary {
+        background-color: #ddd3c3;
+        border: none;
+        color: #5a4a42;
+    }
+    .btn-secondary:hover {
+        background-color: #c2a67c;
+    }
+</style>
+
 <div class="container mt-4">
-    <h2 class="text-center">Add New Student</h2>
+    <h2>Add New Student</h2>
     <form asp-action="AddStudent" method="post">
         <div class="mb-3">
             <label asp-for="Name" class="form-label">Student Name</label>
@@ -23,8 +69,9 @@
         </div>
         @if (!string.IsNullOrEmpty(ViewBag.PhoneExit))
         {
-                            <div style="color:red" class="alert alert-danger">@ViewBag.PhoneExit</div>
+                <div class="alert alert-danger" style="color:red;">@ViewBag.PhoneExit</div>
         }
+
         <div class="mb-3">
             <label asp-for="Address" class="form-label">Address</label>
             <input asp-for="Address" name="Address" class="form-control">
@@ -36,8 +83,9 @@
         </div>
         @if (!string.IsNullOrEmpty(ViewBag.CodeExited))
         {
-                    <div style="color:red" class="alert alert-danger">@ViewBag.CodeExited</div>
+                <div class="alert alert-danger" style="color:red;">@ViewBag.CodeExited</div>
         }
+
         <div class="mb-3">
             <label class="form-label">Select Class</label>
             <select name="ClassId" class="form-select" required>
@@ -48,8 +96,10 @@
                 }
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Add Student</button>
-        <a asp-action="ManageStudent" class="btn btn-secondary">Cancel</a>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Add Student</button>
+            <a asp-action="ManageStudent" class="btn btn-secondary">Cancel</a>
+        </div>
     </form>
 </div>
-

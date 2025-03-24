@@ -1,50 +1,129 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Edit Student";
 }
 
+<style>
+    /* Container chính */
+    .container {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 30px;
+        background: #fdfaf4; /* Nền kem */
+        border-radius: 15px;
+        border: 2px solid #d4af37; /* Viền vàng */
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        font-family: 'Georgia', serif;
+    }
+
+    /* Tiêu đề */
+    h2 {
+        text-align: center;
+        color: #2c3e50; /* Xanh navy */
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    /* Nhãn */
+    .form-label {
+        font-weight: bold;
+        color: #2c3e50;
+        font-size: 16px;
+    }
+
+    /* Input và Select */
+    .form-control, .form-select {
+        border: 1px solid #d4af37; /* Viền vàng nhạt */
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 16px;
+        background: #fff8e7; /* Tông nền vàng nhạt */
+    }
+
+    /* Hiệu ứng khi focus vào ô nhập */
+    .form-control:focus, .form-select:focus {
+        border-color: #c9a227;
+        box-shadow: 0px 0px 8px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Nút */
+    button, .btn {
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    /* Nút chính */
+    .btn-primary {
+        background: #2c3e50; /* Xanh navy */
+        border: none;
+        color: white;
+    }
+
+    /* Nút phụ */
+    .btn-secondary {
+        background: #b5a078; /* Màu vàng cổ điển */
+        color: white;
+        border: none;
+    }
+
+    /* Hiệu ứng khi hover */
+    .btn-primary:hover, .btn-secondary:hover {
+        opacity: 0.85;
+    }
+</style>
+
+<!-- Bố cục trang -->
 <div class="container mt-4">
-    <h2 class="text-center">Edit Student</h2>
+    <h2>📜 Edit Student</h2>
     <form asp-action="EditStudent" method="post">
         <input type="hidden" name="Id" value="@ViewBag.getInfor.Id"/>
 
+        <!-- Nhập tên sinh viên -->
         <div class="mb-3">
-            <label  class="form-label">Student Name</label>
+            <label class="form-label">Student Name</label>
             <input value="@ViewBag.getInfor.Name" name="Name" class="form-control" required>
         </div>
 
+        <!-- Nhập mã sinh viên -->
         <div class="mb-3">
-            <label  class="form-label">Code</label>
+            <label class="form-label">Code</label>
             <input value="@ViewBag.getInfor.Code" name="Code" class="form-control">
         </div>
 
+        <!-- Nhập ngày sinh -->
         <div class="mb-3">
             <label class="form-label">Date of Birth</label>
             <input value="@ViewBag.getInfor.Dob?.ToString("yyyy-MM-dd")" name="Dob" class="form-control" type="date" required>
         </div>
 
+        <!-- Nhập số điện thoại -->
         <div class="mb-3">
-            <label  class="form-label">Phone</label>
+            <label class="form-label">Phone</label>
             <input value="@ViewBag.getInfor.Phone" name="Phone" class="form-control" required>
         </div>
 
+        <!-- Nhập địa chỉ -->
         <div class="mb-3">
-            <label  class="form-label">Address</label>
+            <label class="form-label">Address</label>
             <input value="@ViewBag.getInfor.Address" name="Address" class="form-control">
         </div>
 
-           <div class="mb-3">
+        <!-- Chọn lớp học -->
+        <div class="mb-3">
             <label class="form-label">Select Class</label>
             <select name="ClassId" class="form-select" required>
                 <option value="">-- Select Class --</option>
                 @foreach (var cls in ViewBag.listClass)
                 {
-                            <option value="@cls.Id">@cls.Code</option>
+                        <option value="@cls.Id">@cls.Code</option>
                 }
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-        <a asp-action="ManageStudent" class="btn btn-secondary">Cancel</a>
+        <!-- Nút hành động -->
+        <button type="submit" class="btn btn-primary">💾 Save Changes</button>
+        <a asp-action="ManageStudent" class="btn btn-secondary">❌ Cancel</a>
     </form>
 </div>

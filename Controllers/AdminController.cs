@@ -225,6 +225,15 @@ namespace ManageCoure.Controllers
             var StudentClasses = _contextDAO.StudentClasses.Include(sc => sc.Student).Include(sc => sc.Class)
                 .Where(sc => sc.Class.Code.Contains(Search))
                 .ToList();
+            var classIds = StudentClasses.Select(sc => sc.Class.Id).Distinct().ToList();
+
+            var classes = _contextDAO.Classes
+                .Include(sc => sc.StudentClasses)
+                .Include(sc => sc.SubjectNavigation)
+                .Include(sc => sc.Semester)
+                .Where(c => classIds.Contains(c.Id))
+                .ToList();
+            ViewBag.Classes = classes;
             ViewBag.StudentClasses = StudentClasses;
             return View("ManageClass");
         }
@@ -340,6 +349,12 @@ namespace ManageCoure.Controllers
             ViewBag.listTeachers = listTeachers;
             return View();
         }
+        public IActionResult SearchTeacher(string Search)
+        {
+            var listTeachers = _contextDAO.Accounts.Where(tc => tc.Code.Contains(Search) && tc.Role == 2);
+            ViewBag.listTeachers = listTeachers;
+            return View("ManageTeacher");
+        }
 
         public IActionResult EditTeacher(int Id)
         {
@@ -390,17 +405,27 @@ namespace ManageCoure.Controllers
         public IActionResult RemoveTeacher(int accountId)
         {
             var teacher = _contextDAO.Accounts.FirstOrDefault(tc => tc.Id == accountId);
-            if(teacher == null)
+
+            if (teacher == null)
             {
                 return NotFound();
             }
+
+            bool hasClass = _contextDAO.Classes.Any(c => c.Tearcher == accountId );
+            if (hasClass)
+            {
+                TempData["ErrorMessage"] = "Cannot delete teacher because they are assigned to a class.";
+                return RedirectToAction("ManageTeacher");
+            }
+
             _contextDAO.Accounts.Remove(teacher);
             _contextDAO.SaveChanges();
-            var listTeachers = _contextDAO.Accounts.Where(tc => tc.Role == 2).ToList();
-            ViewBag.listTeachers = listTeachers;
-            return View("ManageTeacher");
 
+            TempData["SuccessMessage"] = "Teacher removed successfully.";
+
+            return RedirectToAction("ManageTeacher");
         }
+
 
     }
 }

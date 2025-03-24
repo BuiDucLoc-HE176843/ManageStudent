@@ -1,4 +1,5 @@
 using ManageCoure.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace ManageCoure
@@ -24,6 +25,13 @@ namespace ManageCoure
                 options.IdleTimeout = TimeSpan.FromSeconds(60);
                 options.Cookie.HttpOnly = true;
             });
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Studdent", policy => policy.RequireRole("Studdent"));
+                options.AddPolicy("Tearcher", policy => policy.RequireRole("Tearcher"));
+                options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+            });
 
             var app = builder.Build();
 
@@ -44,7 +52,7 @@ namespace ManageCoure
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Admin}/{action=Index}/{id?}");
+                pattern: "{controller=Account}/{action=Login}/{id?}");
 
             app.Run();
         }

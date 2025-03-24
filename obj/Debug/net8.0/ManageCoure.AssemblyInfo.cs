@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ManageCoure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0cb90795cf4ec73ccb804e6f05315514367a96a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+95bdd1b931233c453940afaf367f4cf9b948873d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ManageCoure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ManageCoure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
