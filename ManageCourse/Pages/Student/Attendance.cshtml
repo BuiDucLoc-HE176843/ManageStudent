@@ -1,0 +1,57 @@
+﻿@page
+@model ManageCourse.Pages.Student.AttendanceModel
+@{
+    ViewData["Title"] = "Attendance";
+}
+
+<!-- Tiêu đề trang -->
+<h2 class="text-center text-primary mb-4">
+    <i class="fas fa-calendar-check"></i> Attendance
+</h2>
+
+<!-- Bảng Attendance -->
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Session Number</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var attendance in Model.Attendances)
+        {
+            <tr>
+                <td>@attendance.SessionNumber</td>
+                <td class="@(attendance.IsPresent == "Present" ? "text-success" : attendance.IsPresent == "Absent" ? "text-danger" : "text-muted")">
+                    @if (attendance.IsPresent == "Present")
+                    {
+                        <i class="fas fa-check-circle"></i>
+                        <a>Present</a>
+                    }
+                    else if (attendance.IsPresent == "Absent")
+                    {
+                        <i class="fas fa-times-circle"></i>
+                        <a>Absent</a>
+                    }
+                    else
+                    {
+                        <i class="fas fa-question-circle"></i>
+                        <a>Not yet</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Hiển thị tỷ lệ nghỉ ở dưới cùng -->
+<div class="mt-4 text-center">
+    @if (Model.AbsencePercentage > 20)
+    {
+        <p class="text-danger"><i class="fas fa-exclamation-circle"></i> @Model.AbsenceMessage</p>
+    }
+    else
+    {
+        <p><i class="fas fa-info-circle"></i> @Model.AbsenceMessage</p>
+    }
+</div>

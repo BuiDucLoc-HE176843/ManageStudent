@@ -1,0 +1,63 @@
+﻿@page
+@model ManageCourse.Pages.Student.DashboardModel
+@{
+    ViewData["Title"] = "Student Dashboard";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <h2 class="text-center mb-2">🎓 Student Dashboard</h2>
+    <h5 class="text-center text-primary">Xin chào, @Model.StudentName 👋</h5>
+
+    <div class="d-flex flex-column align-items-center gap-4 mt-3">
+        <!-- Khóa học của tôi -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">📚 Khóa học của tôi</h5>
+                <p class="card-text">Xem danh sách các khóa học mà bạn đang tham gia.</p>
+                <a asp-page="/Student/Cources" class="btn btn-primary">Xem ngay</a>
+            </div>
+        </div>
+
+        <!-- Thông báo -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">🔔 Thông báo</h5>
+                <p class="card-text">Xem các thông báo quan trọng từ hệ thống.</p>
+                <a asp-page="/Student/Notifications" class="btn btn-danger">Xem thông báo</a>
+            </div>
+        </div>
+
+        <!-- Thông tin cá nhân -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">👤 Thông tin cá nhân</h5>
+                <p class="card-text">Cập nhật thông tin cá nhân và bảo mật tài khoản.</p>
+                <a asp-page="/Student/Profile" class="btn btn-dark">Cập nhật</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nút Đăng xuất -->
+    <div class="text-center mt-5">
+        <form method="post" asp-page-handler="Logout">
+            <button type="submit" class="btn btn-outline-danger w-25">🚪 Đăng xuất</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+    .btn {
+        width: 50%;
+    }
+</style>
