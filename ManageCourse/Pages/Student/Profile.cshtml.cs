@@ -46,6 +46,8 @@ namespace ManageCourse.Pages.Student
             _context.SaveChanges();
             SuccessMessage = "Cập nhật thông tin thành công!";
 
+            Student = student;
+
             return Page();
         }
     }

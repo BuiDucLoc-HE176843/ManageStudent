@@ -4,19 +4,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
 
-namespace ManageCourse.Pages.Teacher
+namespace ManageCourse.Pages.Admin
 {
-    public class EditProfileModel : PageModel
+    public class ProfileModel : PageModel
     {
         private readonly LearningManagementSystemContext _context;
 
-        public EditProfileModel(LearningManagementSystemContext context)
+        public ProfileModel(LearningManagementSystemContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public User Teacher { get; set; }
+        public User Admin { get; set; }
 
         public string SuccessMessage { get; set; }
 
@@ -25,8 +25,8 @@ namespace ManageCourse.Pages.Teacher
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null) return RedirectToPage("/Login/Login");
 
-            Teacher = _context.Users.FirstOrDefault(u => u.UserId == userId);
-            if (Teacher == null) return RedirectToPage("/Login/Login");
+            Admin = _context.Users.FirstOrDefault(u => u.UserId == userId);
+            if (Admin == null) return RedirectToPage("/Login/Login");
 
             return Page();
         }
@@ -36,17 +36,17 @@ namespace ManageCourse.Pages.Teacher
             var userId = HttpContext.Session.GetInt32("UserId");
             if (userId == null) return RedirectToPage("/Login/Login");
 
-            var teacher = _context.Users.FirstOrDefault(u => u.UserId == userId);
-            if (teacher == null) return RedirectToPage("/Login/Login");
+            var admin = _context.Users.FirstOrDefault(u => u.UserId == userId);
+            if (admin == null) return RedirectToPage("/Login/Login");
 
-            teacher.FullName = Request.Form["FullName"];
-            teacher.PhoneNumber = Request.Form["PhoneNumber"];
-            teacher.Hometown = Request.Form["Hometown"];
+            admin.FullName = Request.Form["FullName"];
+            admin.Hometown = Request.Form["Hometown"];
+            admin.PhoneNumber = Request.Form["PhoneNumber"];
 
             _context.SaveChanges();
             SuccessMessage = "Cập nhật thông tin thành công!";
 
-            Teacher = teacher;
+            Admin = admin;
 
             return Page();
         }

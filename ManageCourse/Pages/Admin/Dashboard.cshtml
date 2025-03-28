@@ -3,3 +3,89 @@
 @{
     ViewData["Title"] = "Admin Dashboard";
 }
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <h2 class="text-center mb-2">🛠️ Admin Dashboard</h2>
+    <h5 class="text-center text-primary">Xin chào, @Model.AdminName 👋</h5>
+
+    <div class="d-flex flex-column align-items-center gap-4 mt-3">
+        <!-- Quản lý học sinh -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">📚 Quản lý học sinh</h5>
+                <p class="card-text">Thêm, chỉnh sửa, xóa và quản lý thông tin học sinh.</p>
+                <a asp-page="/Admin/ManageStudents" class="btn btn-primary">Quản lý ngay</a>
+            </div>
+        </div>
+
+        <!-- Quản lý giáo viên -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">👨‍🏫 Quản lý giáo viên</h5>
+                <p class="card-text">Thêm, chỉnh sửa, xóa và quản lý thông tin giáo viên.</p>
+                <a asp-page="/Admin/ManageTeachers" class="btn btn-success">Quản lý ngay</a>
+            </div>
+        </div>
+
+        <!-- Quản lý lớp học/môn học -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">🏫 Quản lý lớp học / môn học</h5>
+                <p class="card-text">Thêm, chỉnh sửa, xóa và quản lý các khóa học.</p>
+                <a asp-page="/Admin/ManageCourses" class="btn btn-warning">Quản lý ngay</a>
+            </div>
+        </div>
+
+        <!-- Gửi thông báo -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">📢 Gửi thông báo</h5>
+                <p class="card-text">Gửi thông báo quan trọng đến học sinh và giáo viên.</p>
+                <a asp-page="/Admin/SendNotification" class="btn btn-danger">Gửi ngay</a>
+            </div>
+        </div>
+
+        <!-- Thông tin cá nhân -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">👤 Thông tin cá nhân</h5>
+                <p class="card-text">Cập nhật thông tin cá nhân và bảo mật tài khoản.</p>
+                <a asp-page="/Admin/Profile" class="btn btn-dark">Cập nhật</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nút Đăng xuất -->
+    <div class="text-center mt-5">
+        <form method="post" asp-page-handler="Logout">
+            <button type="submit" class="btn btn-outline-danger w-25">🚪 Đăng xuất</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+    .btn {
+        width: 50%;
+    }
+
+    /* Thêm margin-bottom cho nút đăng xuất để không bị che */
+    .text-center.mt-5 {
+        margin-bottom: 50px; /* Bạn có thể điều chỉnh giá trị này để có khoảng cách phù hợp */
+    }
+
+    /* Thêm margin dưới footer để tránh bị đè lên */
+    footer {
+        margin-top: 30px; /* Điều chỉnh giá trị này nếu cần */
+    }
+</style>
