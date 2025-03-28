@@ -72,6 +72,34 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxTY29yZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/Attend.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxBdHRlbmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/CheckAttendance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxDaGVja0F0dGVuZGFuY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxFZGl0UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/ListClass.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxMaXN0Q2xhc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/Notification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxOb3RpZmljYXRpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/Score.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxTY29yZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

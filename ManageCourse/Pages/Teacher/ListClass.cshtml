@@ -1,0 +1,74 @@
+﻿@page
+@model ManageCourse.Pages.Teacher.ListClassModel
+@{
+    ViewData["Title"] = "List Class";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">📚 Danh sách lớp của bạn</h1>
+
+    @if (Model.Classes.Any())
+    {
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Tên lớp</th>
+                    <th>Khóa học</th>
+                    <th>Chọn lớp</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var classItem in Model.Classes)
+                {
+                    <tr>
+                        <td>@classItem.ClassName</td>
+                        <td>@classItem.Course.CourseName</td>
+                        <td>
+                            @if (Model.Action == "chamdiem")
+                            {
+                                <a asp-page="/Teacher/Score" asp-route-classId="@classItem.ClassId" class="btn btn-success">Chấm điểm</a>
+                            }
+                            else if (Model.Action == "diemdanh")
+                            {
+                                <a asp-page="/Teacher/Attend" asp-route-classId="@classItem.ClassId" class="btn btn-info">Điểm danh</a>
+                            }
+                            else if (Model.Action == "thongbao")
+                            {
+                                <a asp-page="/Teacher/Notification" asp-route-classId="@classItem.ClassId" class="btn btn-danger">Gửi thông báo</a>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Chọn chức năng</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-center text-warning">Không có lớp nào.</p>
+    }
+</div>
+
+<style>
+    table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .table {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+</style>

@@ -1,0 +1,87 @@
+﻿@page
+@model ManageCourse.Pages.Teacher.ScoreModel
+@{
+    ViewData["Title"] = "Score";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-center">Chấm điểm cho lớp: @Model.Class.ClassName</h2>
+        <a href="@Url.Page("/Teacher/Dashboard")" class="btn btn-info">🏠 Về trang chủ</a>
+    </div>
+
+    <form method="post">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tên Sinh Viên</th>
+                        <th>Điểm 1</th>
+                        <th>Điểm 2</th>
+                        <th>Điểm 3</th>
+                        <th>Điểm 4</th>
+                        <th>Điểm 5</th>
+                        <th>Điểm Cuối Cùng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var grade in Model.Grades)
+                    {
+                        <tr>
+                            <td>@grade.Student.FullName</td>
+                            <td>
+                                <input type="number" name="Score1_@grade.StudentId" value="@grade.Score1" class="form-control" step="0.01" />
+                            </td>
+                            <td>
+                                <input type="number" name="Score2_@grade.StudentId" value="@grade.Score2" class="form-control" step="0.01" />
+                            </td>
+                            <td>
+                                <input type="number" name="Score3_@grade.StudentId" value="@grade.Score3" class="form-control" step="0.01" />
+                            </td>
+                            <td>
+                                <input type="number" name="Score4_@grade.StudentId" value="@grade.Score4" class="form-control" step="0.01" />
+                            </td>
+                            <td>
+                                <input type="number" name="Score5_@grade.StudentId" value="@grade.Score5" class="form-control" step="0.01" />
+                            </td>
+                            <td>@String.Format("{0:F2}", grade.FinalScore)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-success w-25">Lưu điểm</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .table {
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+    .table th, .table td {
+        text-align: center;
+    }
+
+        .table td input {
+            max-width: 120px;
+        }
+</style>

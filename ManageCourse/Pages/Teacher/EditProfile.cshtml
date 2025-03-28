@@ -1,0 +1,53 @@
+﻿@page
+@model ManageCourse.Pages.Teacher.EditProfileModel
+@{
+    ViewData["Title"] = "Teacher Profile";
+}
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg p-4 rounded" style="width: 450px;">
+        <h2 class="text-center text-primary">👤 Hồ sơ cá nhân</h2>
+
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="alert alert-success text-center">@Model.SuccessMessage</div>
+        }
+
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label fw-bold">User ID</label>
+                <input type="text" class="form-control" value="@Model.Teacher.UserId" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Email</label>
+                <input type="email" class="form-control" value="@Model.Teacher.Email" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Role</label>
+                <input type="text" class="form-control" value="@Model.Teacher.Role" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Họ và tên</label>
+                <input type="text" class="form-control" name="FullName" value="@Model.Teacher.FullName" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Số điện thoại</label>
+                <input type="text" class="form-control" name="PhoneNumber" value="@Model.Teacher.PhoneNumber">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Quê quán</label>
+                <input type="text" class="form-control" name="Hometown" value="@Model.Teacher.Hometown">
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a asp-page="/Teacher/Dashboard" class="btn btn-outline-secondary">🏠 Home</a>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+            </div>
+        </form>
+    </div>
+</div>

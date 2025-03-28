@@ -1,0 +1,79 @@
+﻿@page
+@model ManageCourse.Pages.Teacher.DashboardModel
+@{
+    ViewData["Title"] = "Teacher Dashboard";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <h2 class="text-center mb-2">👨‍🏫 Teacher Dashboard</h2>
+    <h5 class="text-center text-primary">Xin chào, @Model.TeacherName 👋</h5>
+
+    <div class="d-flex flex-column align-items-center gap-4 mt-3">
+        <!-- Chấm điểm -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">✏️ Chấm điểm</h5>
+                <p class="card-text">Chấm điểm cho các học sinh trong lớp của bạn.</p>
+                <a asp-page="/Teacher/ListClass" asp-route-action="chamdiem" class="btn btn-primary">Chấm điểm ngay</a>
+            </div>
+        </div>
+
+        <!-- Điểm danh -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">📋 Điểm danh</h5>
+                <p class="card-text">Điểm danh học sinh trong lớp.</p>
+                <a asp-page="/Teacher/ListClass" asp-route-action="diemdanh" class="btn btn-info">Điểm danh ngay</a>
+            </div>
+        </div>
+
+        <!-- Gửi thông báo -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">📢 Gửi thông báo</h5>
+                <p class="card-text">Gửi thông báo tới học sinh của bạn.</p>
+                <a asp-page="/Teacher/ListClass" asp-route-action="thongbao" class="btn btn-danger">Gửi ngay</a>
+            </div>
+        </div>
+
+        <!-- Chỉnh sửa profile của mình -->
+        <div class="card text-center shadow-lg w-75">
+            <div class="card-body">
+                <h5 class="card-title">👤 Chỉnh sửa profile của mình</h5>
+                <p class="card-text">Cập nhật thông tin cá nhân của bạn.</p>
+                <a asp-page="/Teacher/EditProfile" class="btn btn-warning">Chỉnh sửa</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nút Đăng xuất -->
+    <div class="text-center mt-5" style="margin-bottom: 100px;">
+        <form method="post" asp-page-handler="Logout">
+            <button type="submit" class="btn btn-outline-danger w-25">🚪 Đăng xuất</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 12px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+    .btn {
+        width: 50%;
+    }
+
+    footer {
+        background-color: #f8f9fa;
+        font-size: 14px;
+        padding: 20px 0;
+    }
+</style>

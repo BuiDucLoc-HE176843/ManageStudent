@@ -1,0 +1,96 @@
+﻿@page
+@model ManageCourse.Pages.Teacher.CheckAttendanceModel
+@{
+    ViewData["Title"] = "CheckAttendance";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-center">Điểm Danh Lớp: @Model.Class.ClassName - Phiên học @Model.SessionNumber</h1>
+        <a href="/Teacher/Dashboard" class="btn btn-secondary">🏠 Trang Chủ</a>
+    </div>
+
+    <!-- Hiển thị thông báo thành công nếu có -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <!-- Hiển thị thông báo lỗi nếu có -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <form method="post">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>STT</th>
+                    <th>Tên Sinh Viên</th>
+                    <th>Điểm Danh</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var enrollment in Model.Enrollments)
+                {
+                    <tr>
+                        <td>@(Model.Enrollments.IndexOf(enrollment) + 1)</td>
+                        <td>@enrollment.Student.FullName</td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="attendance[@enrollment.StudentId]" value="1"
+                                @if (enrollment.Student.StudentAttendances.Any(sa => sa.SessionNumber == Model.SessionNumber && sa.IsPresent == 1))
+                                {
+                                    @:checked
+                                } />
+                                <label class="form-check-label">Có mặt</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="attendance[@enrollment.StudentId]" value="0"
+                                @if (enrollment.Student.StudentAttendances.Any(sa => sa.SessionNumber == Model.SessionNumber && sa.IsPresent == 0))
+                                {
+                                    @:checked
+                                } />
+                                <label class="form-check-label">Vắng</label>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-success">Lưu Điểm Danh</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    .container {
+        max-width: 900px;
+    }
+
+    .btn {
+        border-radius: 8px;
+        width: auto;
+    }
+
+    .table {
+        border-radius: 12px;
+    }
+
+    .alert-dismissible .btn-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+</style>

@@ -1,0 +1,55 @@
+﻿@page
+@model ManageCourse.Pages.Teacher.AttendModel
+@{
+    ViewData["Title"] = "Attend";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-center">Điểm Danh Lớp: @Model.Class.ClassName</h1>
+        <a href="@Url.Page("/Teacher/Dashboard")" class="btn btn-info">🏠 Về trang chủ</a>
+    </div>
+
+    @if (Model.SessionNumbers.Any())
+    {
+        <ul class="list-group">
+            @foreach (var sessionNumber in Model.SessionNumbers)
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>Phiên @sessionNumber</span>
+                    <a asp-page="/Teacher/CheckAttendance" asp-route-classId="@Model.Class.ClassId" asp-route-sessionNumber="@sessionNumber" class="btn btn-primary btn-sm">Điểm Danh</a>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="text-center text-warning">Không có phiên học nào để điểm danh.</p>
+    }
+</div>
+
+<style>
+    .list-group-item {
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+    }
+
+    .btn {
+        width: auto;
+    }
+
+    .btn-info, .btn-primary {
+        border-radius: 8px;
+    }
+
+    .list-group-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
