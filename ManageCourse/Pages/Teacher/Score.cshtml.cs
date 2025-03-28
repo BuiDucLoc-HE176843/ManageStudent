@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,14 +18,15 @@ namespace ManageCourse.Pages.Teacher
         }
 
         public Class Class { get; set; }
+        public IList<Enrollment> Enrollments { get; set; }
         public IList<Grade> Grades { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int classId)
         {
-            // Lấy lớp học với các sinh viên đã đăng ký
+            // Lấy lớp học và danh sách sinh viên đã đăng ký
             Class = await _context.Classes
-                .Include(c => c.Grades)
-                .ThenInclude(g => g.Student)
+                .Include(c => c.Enrollments)
+                .ThenInclude(e => e.Student)
                 .FirstOrDefaultAsync(c => c.ClassId == classId);
 
             if (Class == null)
@@ -32,49 +34,63 @@ namespace ManageCourse.Pages.Teacher
                 return NotFound();
             }
 
-            // Lấy điểm của các sinh viên trong lớp này
-            Grades = Class.Grades.ToList();
+            Enrollments = Class.Enrollments.ToList();
+
+            // Lấy điểm của sinh viên trong lớp
+            Grades = await _context.Grades.Where(g => g.ClassId == classId).ToListAsync();
 
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int classId)
         {
-            // Cập nhật điểm của các sinh viên trong lớp
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            // Lấy lớp học và điểm của các sinh viên
-            var gradesToUpdate = await _context.Grades
-                .Where(g => g.ClassId == classId)
+            // Lấy danh sách sinh viên trong lớp
+            var enrollments = await _context.Enrollments
+                .Where(e => e.ClassId == classId)
                 .ToListAsync();
 
-            foreach (var grade in gradesToUpdate)
+            foreach (var enrollment in enrollments)
             {
-                var score1 = Convert.ToDouble(Request.Form[$"Score1_{grade.StudentId}"]);
-                var score2 = Convert.ToDouble(Request.Form[$"Score2_{grade.StudentId}"]);
-                var score3 = Convert.ToDouble(Request.Form[$"Score3_{grade.StudentId}"]);
-                var score4 = Convert.ToDouble(Request.Form[$"Score4_{grade.StudentId}"]);
-                var score5 = Convert.ToDouble(Request.Form[$"Score5_{grade.StudentId}"]);
+                var grade = await _context.Grades
+                    .FirstOrDefaultAsync(g => g.ClassId == classId && g.StudentId == enrollment.StudentId);
 
-                // Cập nhật điểm cho sinh viên
-                grade.Score1 = score1;
-                grade.Score2 = score2;
-                grade.Score3 = score3;
-                grade.Score4 = score4;
-                grade.Score5 = score5;
+                // Nếu chưa có điểm, tạo mới
+                if (grade == null)
+                {
+                    grade = new Grade
+                    {
+                        ClassId = classId,
+                        StudentId = enrollment.StudentId
+                    };
+                    _context.Grades.Add(grade);
+                }
 
-                // Tính điểm cuối cùng và làm tròn đến 2 chữ số sau dấu thập phân
-                double finalScore = (score1 + score2 + score3 + score4 + score5) / 5;
-                grade.FinalScore = Math.Round(finalScore, 2); // Làm tròn đến 2 chữ số sau dấu thập phân
+                // Lấy điểm từ form
+                grade.Score1 = GetScore($"Score1_{enrollment.StudentId}");
+                grade.Score2 = GetScore($"Score2_{enrollment.StudentId}");
+                grade.Score3 = GetScore($"Score3_{enrollment.StudentId}");
+                grade.Score4 = GetScore($"Score4_{enrollment.StudentId}");
+                grade.Score5 = GetScore($"Score5_{enrollment.StudentId}");
+
             }
 
-            // Lưu lại các thay đổi vào cơ sở dữ liệu
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/Teacher/Score", new { classId = classId });
+            return RedirectToPage("/Teacher/Score", new { classId });
+        }
+
+        private double? GetScore(string key)
+        {
+            if (Request.Form.TryGetValue(key, out var value) && double.TryParse(value, out var result))
+            {
+                return result;
+            }
+            return null;
         }
     }
 }

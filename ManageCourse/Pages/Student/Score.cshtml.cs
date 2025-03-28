@@ -49,11 +49,11 @@ namespace ManageCourse.Pages.Student
         public class GradeInfo
         {
             public string CourseName { get; set; }
-            public double Score1 { get; set; }
-            public double Score2 { get; set; }
-            public double Score3 { get; set; }
-            public double Score4 { get; set; }
-            public double Score5 { get; set; }
+            public double? Score1 { get; set; }
+            public double? Score2 { get; set; }
+            public double? Score3 { get; set; }
+            public double? Score4 { get; set; }
+            public double? Score5 { get; set; }
             public double? FinalScore { get; set; }
         }
     }

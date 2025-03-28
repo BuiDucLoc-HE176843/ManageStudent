@@ -27,26 +27,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var grade in Model.Grades)
+                    @foreach (var enrollment in Model.Enrollments)
                     {
+                        var grade = Model.Grades.FirstOrDefault(g => g.StudentId == enrollment.StudentId);
                         <tr>
-                            <td>@grade.Student.FullName</td>
+                            <td>@enrollment.Student.FullName</td>
                             <td>
-                                <input type="number" name="Score1_@grade.StudentId" value="@grade.Score1" class="form-control" step="0.01" />
+                                <input type="number" name="Score1_@enrollment.StudentId" value="@grade?.Score1" class="form-control" step="0.1" min="0" max="10" />
                             </td>
                             <td>
-                                <input type="number" name="Score2_@grade.StudentId" value="@grade.Score2" class="form-control" step="0.01" />
+                                <input type="number" name="Score2_@enrollment.StudentId" value="@grade?.Score2" class="form-control" step="0.1" min="0" max="10" />
                             </td>
                             <td>
-                                <input type="number" name="Score3_@grade.StudentId" value="@grade.Score3" class="form-control" step="0.01" />
+                                <input type="number" name="Score3_@enrollment.StudentId" value="@grade?.Score3" class="form-control" step="0.1" min="0" max="10" />
                             </td>
                             <td>
-                                <input type="number" name="Score4_@grade.StudentId" value="@grade.Score4" class="form-control" step="0.01" />
+                                <input type="number" name="Score4_@enrollment.StudentId" value="@grade?.Score4" class="form-control" step="0.1" min="0" max="10" />
                             </td>
                             <td>
-                                <input type="number" name="Score5_@grade.StudentId" value="@grade.Score5" class="form-control" step="0.01" />
+                                <input type="number" name="Score5_@enrollment.StudentId" value="@grade?.Score5" class="form-control" step="0.1" min="0" max="10" />
                             </td>
-                            <td>@String.Format("{0:F2}", grade.FinalScore)</td>
+                            <td>@(grade?.FinalScore?.ToString("F2") ?? "Chưa có")</td>
                         </tr>
                     }
                 </tbody>

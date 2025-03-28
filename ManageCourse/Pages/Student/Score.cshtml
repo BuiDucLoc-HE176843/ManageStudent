@@ -23,12 +23,12 @@
             {
                 string gradeCategory;
                 string gradeClass;
-                if (grade.FinalScore > 8)
+                if (grade.FinalScore >= 8)
                 {
                     gradeCategory = "Giỏi";
                     gradeClass = "text-success fw-bold";
                 }
-                else if (grade.FinalScore >= 6 && grade.FinalScore <= 7)
+                else if (grade.FinalScore >= 6 && grade.FinalScore < 8)
                 {
                     gradeCategory = "Khá";
                     gradeClass = "text-primary fw-bold";
@@ -72,7 +72,7 @@
                                 </tr>
                                 <tr>
                                     <th class="bg-light"><i class="fa-solid fa-trophy text-warning"></i> Điểm cuối</th>
-                                    <td class="fw-bold text-success">@grade.FinalScore</td>
+                                    <td class="fw-bold text-success">@grade.FinalScore?.ToString("F2")</td>
                                 </tr>
                                 <tr>
                                     <th class="bg-light"><i class="fa-solid fa-medal"></i> Xếp loại</th>

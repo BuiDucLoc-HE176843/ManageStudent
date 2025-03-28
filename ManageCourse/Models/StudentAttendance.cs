@@ -7,15 +7,15 @@ public partial class StudentAttendance
 {
     public int AttendanceId { get; set; }
 
-    public int? StudentId { get; set; }
+    public int StudentId { get; set; }
 
-    public int? ClassId { get; set; }
+    public int ClassId { get; set; }
 
-    public int? SessionNumber { get; set; }
+    public int SessionNumber { get; set; }
 
     public byte? IsPresent { get; set; }
 
-    public virtual Class? Class { get; set; }
+    public virtual Class Class { get; set; } = null!;
 
-    public virtual User? Student { get; set; }
+    public virtual User Student { get; set; } = null!;
 }
