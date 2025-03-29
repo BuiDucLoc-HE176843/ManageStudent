@@ -16,7 +16,7 @@
             <div class="card-body">
                 <h5 class="card-title">📚 Quản lý học sinh</h5>
                 <p class="card-text">Thêm, chỉnh sửa, xóa và quản lý thông tin học sinh.</p>
-                <a asp-page="/Admin/ManageStudents" class="btn btn-primary">Quản lý ngay</a>
+                <a asp-page="/Admin/ManageOtherProfile" asp-route-action="hocsinh" class="btn btn-primary">Quản lý ngay</a>
             </div>
         </div>
 
@@ -25,7 +25,7 @@
             <div class="card-body">
                 <h5 class="card-title">👨‍🏫 Quản lý giáo viên</h5>
                 <p class="card-text">Thêm, chỉnh sửa, xóa và quản lý thông tin giáo viên.</p>
-                <a asp-page="/Admin/ManageTeachers" class="btn btn-success">Quản lý ngay</a>
+                <a asp-page="/Admin/ManageOtherProfile" asp-route-action="giaovien" class="btn btn-success">Quản lý ngay</a>
             </div>
         </div>
 

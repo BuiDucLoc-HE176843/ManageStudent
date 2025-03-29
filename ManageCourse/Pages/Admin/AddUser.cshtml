@@ -1,0 +1,87 @@
+﻿@page
+@model ManageCourse.Pages.Admin.AddUserModel
+
+@{
+    ViewData["Title"] = "Add New User";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="text-primary">
+            <i class="fas fa-user-plus"></i> Add New User
+        </h2>
+        <a class="btn btn-secondary" href="/Admin/Dashboard">
+            <i class="fas fa-home"></i> Home
+        </a>
+    </div>
+
+    <!-- Hiển thị thông báo nếu có -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <!-- Hiển thị lỗi nếu có -->
+    @if (ModelState.ErrorCount > 0)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li><i class="fas fa-exclamation-circle"></i> @error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <div class="card shadow-lg p-4">
+        <form method="post">
+            <div class="mb-3">
+                <label for="FullName" class="form-label"><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="FullName" name="FullName" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="Email" class="form-label"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="Email" name="Email" class="form-control" required />
+                @if (ModelState["NewUser.Email"] != null)
+                {
+                    <div class="text-danger">@ModelState["NewUser.Email"]?.Errors[0]?.ErrorMessage</div>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="PasswordHash" class="form-label"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="PasswordHash" name="PasswordHash" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="Role" class="form-label"><i class="fas fa-user-tag"></i> Role</label>
+                <input type="text" id="Role" name="Role" value="@Model.NewUser.Role" class="form-control" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label for="Hometown" class="form-label"><i class="fas fa-map-marker-alt"></i> Hometown</label>
+                <input type="text" id="Hometown" name="Hometown" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="PhoneNumber" class="form-label"><i class="fas fa-phone"></i> Phone Number</label>
+                <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control" required />
+                @if (ModelState["NewUser.PhoneNumber"] != null)
+                {
+                    <div class="text-danger">@ModelState["NewUser.PhoneNumber"]?.Errors[0]?.ErrorMessage</div>
+                }
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-user-plus"></i> Add User
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- FontAwesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">

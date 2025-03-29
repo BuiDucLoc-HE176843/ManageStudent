@@ -1,0 +1,86 @@
+﻿@page "{classId:int}"
+@model ManageCourse.Pages.Admin.EditClassModel
+@{
+    ViewData["Title"] = "Chỉnh sửa lớp học";
+}
+
+<h2>Chỉnh sửa lớp học</h2>
+
+@if (!string.IsNullOrEmpty(Model.SuccessMessage))
+{
+    <div class="alert alert-success">@Model.SuccessMessage</div>
+}
+
+<form method="post">
+    <input type="hidden" asp-for="ClassItem.ClassId" />
+
+    <div class="mb-3">
+        <label class="form-label">Tên lớp</label>
+        <input type="text" asp-for="ClassItem.ClassName" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Giáo viên</label>
+        <select asp-for="ClassItem.TeacherId" asp-items="Model.Teachers" class="form-control"></select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Môn học</label>
+        <select asp-for="ClassItem.CourseId" asp-items="Model.Courses" class="form-control"></select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Số buổi học</label>
+        <input type="number" asp-for="ClassItem.TotalSessions" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Trạng thái</label>
+        <select asp-for="ClassItem.Status" class="form-control">
+            <option value="1">Đang mở</option>
+            <option value="2">Đã kết thúc</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+</form>
+
+<h3>Danh sách học sinh</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên sinh viên</th>
+            <th>Email</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@student.FullName</td>
+                <td>@student.Email</td>
+                <td>
+                    <form method="post" asp-page-handler="RemoveStudent">
+                        <input type="hidden" name="studentId" value="@student.UserId" />
+                        <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Thêm học sinh vào lớp</h3>
+<form method="post" asp-page-handler="AddStudent">
+    <div class="mb-3">
+        <label class="form-label">Chọn học sinh</label>
+        <select name="newStudentId" class="form-control">
+            @foreach (var student in Model.AllStudents)
+            {
+                <option value="@student.UserId">@student.FullName</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Thêm học sinh</button>
+</form>

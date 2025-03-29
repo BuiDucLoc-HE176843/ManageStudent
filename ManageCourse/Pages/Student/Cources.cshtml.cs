@@ -39,7 +39,8 @@ namespace ManageCourse.Pages.Student
                     ClassId = e.Class.ClassId,
                     ClassName = e.Class.ClassName,
                     CourseName = e.Class.Course.CourseName,
-                    TeacherName = e.Class.Teacher.FullName
+                    TeacherName = e.Class.Teacher.FullName,
+                    Status = e.Class.Status == 1 ? "Đang diễn ra" : "Đã kết thúc"
                 })
                 .ToListAsync();
 
@@ -52,6 +53,7 @@ namespace ManageCourse.Pages.Student
             public string ClassName { get; set; }
             public string CourseName { get; set; }
             public string TeacherName { get; set; }
+            public string Status { get; set; } = null!;
         }
     }
 }

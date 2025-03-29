@@ -4,54 +4,69 @@
     ViewData["Title"] = "Attendance";
 }
 
-<!-- Tiêu đề trang -->
-<h2 class="text-center text-primary mb-4">
-    <i class="fas fa-calendar-check"></i> Attendance
-</h2>
+<div class="container mt-4">
+    <!-- Tiêu đề trang -->
+    <h2 class="text-center text-primary mb-4">
+        <i class="fas fa-calendar-check"></i> Attendance
+    </h2>
 
-<!-- Bảng Attendance -->
-<table class="table table-bordered table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th>Session Number</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var attendance in Model.Attendances)
+    <!-- Bảng Attendance -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-hover text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th><i class="fas fa-list-ol"></i> Session Number</th>
+                        <th><i class="fas fa-user-check"></i> Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var attendance in Model.Attendances)
+                    {
+                        <tr class="align-middle">
+                            <td>@attendance.SessionNumber</td>
+                            <td class="@(attendance.IsPresent == "Present" ? "text-success fw-bold" : attendance.IsPresent == "Absent" ? "text-danger fw-bold" : "text-warning fw-bold")">
+                                @if (attendance.IsPresent == "Present")
+                                {
+                                    <i class="fas fa-check-circle">Present</i>
+                                    
+                                            }
+                                else if (attendance.IsPresent == "Absent")
+                                {
+                                    <i class="fas fa-times-circle">Absent</i>
+                                            }
+                                else
+                                {
+                                    <i class="fas fa-question-circle">Not Yet</i>
+                                            }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Hiển thị tỷ lệ nghỉ -->
+    <div class="mt-4 text-center">
+        @if (Model.AbsencePercentage > 20)
         {
-            <tr>
-                <td>@attendance.SessionNumber</td>
-                <td class="@(attendance.IsPresent == "Present" ? "text-success" : attendance.IsPresent == "Absent" ? "text-danger" : "text-black")">
-                    @if (attendance.IsPresent == "Present")
-                    {
-                        <i class="fas fa-check-circle"></i>
-                        <a>Present</a>
-                    }
-                    else if (attendance.IsPresent == "Absent")
-                    {
-                        <i class="fas fa-times-circle"></i>
-                        <a>Absent</a>
-                    }
-                    else
-                    {
-                        <i class="fas fa-question-circle"></i>
-                        <a>Not Yet</a>
-                    }
-                </td>
-            </tr>
+            <p class="text-danger fw-bold">
+                <i class="fas fa-exclamation-circle"></i> @Model.AbsenceMessage
+            </p>
         }
-    </tbody>
-</table>
+        else
+        {
+            <p class="text-info fw-bold">
+                <i class="fas fa-info-circle"></i> @Model.AbsenceMessage
+            </p>
+        }
+    </div>
 
-<!-- Hiển thị tỷ lệ nghỉ ở dưới cùng -->
-<div class="mt-4 text-center">
-    @if (Model.AbsencePercentage > 20)
-    {
-        <p class="text-danger"><i class="fas fa-exclamation-circle"></i> @Model.AbsenceMessage</p>
-    }
-    else
-    {
-        <p><i class="fas fa-info-circle"></i> @Model.AbsenceMessage</p>
-    }
+    <!-- Nút quay lại trang chủ -->
+    <div class="text-center mt-3">
+        <a href="/" class="btn btn-primary">
+            <i class="fas fa-home"></i> Home
+        </a>
+    </div>
 </div>

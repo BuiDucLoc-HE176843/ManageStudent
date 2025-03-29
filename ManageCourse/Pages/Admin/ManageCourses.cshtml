@@ -1,0 +1,116 @@
+﻿@page
+@model ManageCourse.Pages.Admin.ManageCoursesModel
+@{
+    ViewData["Title"] = "Manage Courses";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2><i class="fa-solid fa-book"></i> Manage Courses</h2>
+        <a asp-page="/Admin/Dashboard" class="btn btn-primary"><i class="fa-solid fa-home"></i> Home</a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <div class="row">
+        <!-- Danh sách Courses -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4><i class="fa-solid fa-graduation-cap"></i> Courses</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach (var course in Model.Courses)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @course.CourseName
+                                <form method="post" asp-page-handler="DeleteCourse" asp-route-courseId="@course.CourseId" class="d-inline">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa môn học này không?');">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <form method="post" asp-page-handler="AddCourse" class="d-flex">
+                        <input type="text" name="NewCourseName" class="form-control me-2" placeholder="Enter course name" required>
+                        <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus"></i> Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Danh sách Classes -->
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4><i class="fa-solid fa-chalkboard"></i> Classes</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Class ID</th>
+                                <th>Class Name</th>
+                                <th>Course</th>
+                                <th>Teacher</th>
+                                <th>Total Sessions</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var classItem in Model.Classes)
+                            {
+                                <tr>
+                                    <td>@classItem.ClassId</td>
+                                    <td>@classItem.ClassName</td>
+                                    <td>@classItem.Course.CourseName</td>
+                                    <td>@classItem.Teacher.FullName</td>
+                                    <td>@(classItem.TotalSessions ?? 0)</td>
+                                    <td>
+                                        <span class="badge @(classItem.Status == 1 ? "bg-success" : "bg-secondary")">
+                                            @(classItem.Status == 1 ? "Active" : "Inactive")
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a asp-page="ManageScore" asp-route-classId="@classItem.ClassId" class="btn btn-info btn-sm">
+                                            <i class="fa-solid fa-chart-line"></i>
+                                        </a>
+                                        <a asp-page="ManageAttendance" asp-route-classId="@classItem.ClassId" class="btn btn-warning btn-sm">
+                                            <i class="fa-solid fa-calendar-check"></i>
+                                        </a>
+                                        <a asp-page="EditClass" asp-route-classId="@classItem.ClassId" class="btn btn-primary btn-sm">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </a>
+                                        <form method="post" asp-page-handler="DeleteClass" asp-route-classId="@classItem.ClassId" class="d-inline">
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa lớp này không?');">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
