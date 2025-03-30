@@ -1,0 +1,108 @@
+﻿@page
+@model ManageCourse.Pages.Admin.ScheduleModel
+@{
+    ViewData["Title"] = "Schedule";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+<h2 class="text-center text-primary"><i class="fas fa-calendar-alt"></i> Lịch Học</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <i class="fas fa-check-circle"></i> @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <i class="fas fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Nút Home trả về trang Dashboard -->
+<a href="/Admin/Dashboard" class="btn btn-primary mb-3"><i class="fas fa-home"></i> Về trang chủ</a>
+
+<!-- Form thêm lịch học mới -->
+<h3><i class="fas fa-plus-circle"></i> Thêm lịch học mới</h3>
+<form method="post" asp-page-handler="AddSchedule">
+    <div class="form-group">
+        <label for="ClassId">Chọn lớp học:</label>
+        <select id="ClassId" name="classId" class="form-control">
+            <option value="">Chọn lớp học</option>
+            @foreach (var c in Model.Classes)
+            {
+                <option value="@c.ClassId">@c.ClassName - GV: @c.Teacher.FullName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="DayOfWeek">Ngày trong tuần:</label>
+        <select id="DayOfWeek" name="dayOfWeek" class="form-control">
+            <option value="2">Thứ 2</option>
+            <option value="3">Thứ 3</option>
+            <option value="4">Thứ 4</option>
+            <option value="5">Thứ 5</option>
+            <option value="6">Thứ 6</option>
+            <option value="7">Thứ 7</option>
+            <option value="1">Chủ Nhật</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="Session">Buổi học:</label>
+        <select id="Session" name="session" class="form-control">
+            <option value="0">Sáng</option>
+            <option value="1">Chiều</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success"><i class="fas fa-calendar-check"></i> Thêm lịch học</button>
+</form>
+
+<br>
+
+<!-- Bảng hiển thị lịch học -->
+<h3><i class="fas fa-calendar-day"></i> Lịch học hiện tại</h3>
+
+<table class="table table-bordered table-striped" style="table-layout: fixed;">
+    <thead class="table-dark">
+        <tr>
+            <th style="width: 150px;">Buổi</th>
+            @for (int i = 2; i <= 7; i++)
+            {
+                <th style="width: 150px;">Thứ @i</th>
+            }
+            <th style="width: 150px;">Chủ Nhật</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var session in new[] { 0, 1 })
+        {
+            <tr>
+                <td style="height: 100px;">@(session == 0 ? "Sáng" : "Chiều")</td>
+                @for (int day = 2; day <= 8; day++)
+                {
+                    var schedules = Model.Schedules
+                    .Where(s => s.DayOfWeek == (day == 8 ? 1 : day) && s.Session == session);
+                    <td style="height: 100px; vertical-align: top;">
+                        @foreach (var schedule in schedules)
+                        {
+                            <div class="schedule-card p-2 mb-2 border rounded" style="border: 1px solid #ddd;">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span><strong>@schedule.Class.ClassName</strong> - GV: @schedule.Class.Teacher.FullName</span>
+                                    <form method="post" asp-page-handler="DeleteSchedule" class="d-inline">
+                                        <input type="hidden" name="scheduleId" value="@schedule.ScheduleId" />
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash-alt"></i> Xóa
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

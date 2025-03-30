@@ -57,6 +57,48 @@ namespace ManageCourse.Pages.Admin
             return await OnGetAsync(classId);
         }
 
+        //public async Task<IActionResult> OnPostAddStudentAsync(int studentId, int classId)
+        //{
+        //    // Lấy thông tin lớp hiện tại
+        //    var currentClass = await _context.Classes
+        //        .FirstOrDefaultAsync(c => c.ClassId == classId);
+
+        //    if (currentClass == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    // Kiểm tra sinh viên có học lớp nào khác của cùng CourseId và Status = 1 hay không
+        //    bool isEnrolledInOtherClass = await _context.Enrollments
+        //        .AnyAsync(e => e.StudentId == studentId &&
+        //                       e.Class.CourseId == currentClass.CourseId &&
+        //                       e.Class.Status == 1);
+
+        //    if (isEnrolledInOtherClass)
+        //    {
+        //        ModelState.AddModelError(string.Empty, "Học sinh đã trong lớp khác học môn này.");
+        //        return await OnGetAsync(classId);
+        //    }
+
+        //    // Nếu không có lớp nào vi phạm, tiến hành thêm sinh viên
+        //    bool exists = await _context.Enrollments
+        //        .AnyAsync(e => e.StudentId == studentId && e.ClassId == classId);
+
+        //    if (!exists)
+        //    {
+        //        _context.Enrollments.Add(new Enrollment
+        //        {
+        //            StudentId = studentId,
+        //            ClassId = classId
+        //        });
+
+        //        await _context.SaveChangesAsync();
+        //        SuccessMessage = "Thêm sinh viên vào lớp thành công!";
+        //    }
+
+        //    return await OnGetAsync(classId);
+        //}
+
         public async Task<IActionResult> OnPostAddStudentAsync(int studentId, int classId)
         {
             // Lấy thông tin lớp hiện tại
@@ -66,6 +108,30 @@ namespace ManageCourse.Pages.Admin
             if (currentClass == null)
             {
                 return NotFound();
+            }
+
+            // Kiểm tra lịch học của lớp hiện tại
+            var currentSchedules = await _context.Schedules
+                .Where(s => s.ClassId == classId)
+                .ToListAsync(); // Chuyển sang ToList() để xử lý trên client
+
+            // Kiểm tra xem sinh viên đã đăng ký lớp nào có trùng lịch học (Session và DayOfWeek)
+            var conflictingSchedule = await _context.Enrollments
+                .Where(e => e.StudentId == studentId)
+                .Include(e => e.Class)
+                .ThenInclude(c => c.Schedules) // Lấy các lớp mà sinh viên đã đăng ký và lịch học của chúng
+                .ToListAsync(); // Chuyển sang ToList() để xử lý trên client
+
+            // Kiểm tra lịch học trùng
+            var isConflicting = conflictingSchedule
+                .SelectMany(e => e.Class.Schedules)
+                .Any(s => currentSchedules
+                    .Any(cs => cs.Session == s.Session && cs.DayOfWeek == s.DayOfWeek));
+
+            if (isConflicting)
+            {
+                ModelState.AddModelError(string.Empty, "Lịch học của sinh viên bị trùng với lớp học hiện tại.");
+                return await OnGetAsync(classId);
             }
 
             // Kiểm tra sinh viên có học lớp nào khác của cùng CourseId và Status = 1 hay không
@@ -98,5 +164,6 @@ namespace ManageCourse.Pages.Admin
 
             return await OnGetAsync(classId);
         }
+
     }
 }

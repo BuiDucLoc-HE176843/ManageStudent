@@ -27,6 +27,7 @@ namespace ManageCourse.Pages.Teacher
                 // Lấy danh sách lớp học của giáo viên
                 Classes = await _context.Classes
                     .Where(c => c.TeacherId == teacherId.Value)  // Sử dụng teacherId.Value
+                    .Where(c => c.Status != 2)
                     .Include(c => c.Course)
                     .ToListAsync();
             }

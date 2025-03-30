@@ -23,6 +23,8 @@ public partial class Class
 
     public virtual ICollection<Grade> Grades { get; set; } = new List<Grade>();
 
+    public virtual ICollection<Schedule> Schedules { get; set; } = new List<Schedule>();
+
     public virtual ICollection<StudentAttendance> StudentAttendances { get; set; } = new List<StudentAttendance>();
 
     public virtual User Teacher { get; set; } = null!;

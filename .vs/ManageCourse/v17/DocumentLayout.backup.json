@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "ManageCourse\\Pages\\Admin\\EditClass.cshtml.cs",
               "ToolTip": "D:\\commit\\ManageStudent\\ManageCourse\\Pages\\Admin\\EditClass.cshtml.cs",
               "RelativeToolTip": "ManageCourse\\Pages\\Admin\\EditClass.cshtml.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAA9wAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAwGYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-29T18:10:25.858Z",
               "EditorCaption": ""
@@ -41,9 +41,10 @@
               "RelativeDocumentMoniker": "ManageCourse\\Pages\\Admin\\EditClass.cshtml",
               "ToolTip": "D:\\commit\\ManageStudent\\ManageCourse\\Pages\\Admin\\EditClass.cshtml",
               "RelativeToolTip": "ManageCourse\\Pages\\Admin\\EditClass.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-29T18:10:22.64Z"
+              "WhenOpened": "2025-03-29T18:10:22.64Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,0 +1,52 @@
+﻿@page
+@model ManageCourse.Pages.Teacher.ScheduleModel
+@{
+    ViewData["Title"] = "Teacher Schedule";
+}
+
+<h2 class="text-center text-primary"><i class="fas fa-calendar-alt"></i> Lịch Dạy</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger text-center">
+        <i class="fas fa-exclamation-circle"></i> @TempData["ErrorMessage"]
+    </div>
+}
+
+@if (Model.Schedules != null && Model.Schedules.Any())
+{
+    <!-- Bảng hiển thị lịch dạy -->
+    <table class="table table-bordered table-striped" style="table-layout: fixed; background-color: #f9f9f9;">
+        <thead class="table-primary">
+            <tr>
+                <th style="width: 150px; background-color: #4CAF50; color: white;">Buổi</th>
+                @for (int i = 2; i <= 7; i++)
+                {
+                    <th style="width: 150px; background-color: #4CAF50; color: white;">Thứ @i</th>
+                }
+                <th style="width: 150px; background-color: #4CAF50; color: white;">Chủ Nhật</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var session in new[] { 0, 1 })
+            {
+                <tr>
+                    <td style="height: 100px; background-color: #f2f2f2; font-weight: bold;">@(session == 0 ? "Sáng" : "Chiều")</td>
+                    @for (int day = 2; day <= 8; day++)
+                    {
+                        var schedules = Model.Schedules
+                        .Where(s => s.DayOfWeek == (day == 8 ? 1 : day) && s.Session == session);
+                        <td style="height: 100px; vertical-align: top; background-color: #ffffff;">
+                            @foreach (var schedule in schedules)
+                            {
+                                <div class="schedule-card p-3 mb-2" style="border: 1px solid #80C7E2; border-radius: 5px; background-color: #E3F2FD; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    <span style="color: #1E88E5; font-weight: bold;">@schedule.Class.ClassName</span> - GV: @schedule.Class.Teacher.FullName
+                                </div>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+}
