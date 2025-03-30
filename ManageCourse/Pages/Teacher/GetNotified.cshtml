@@ -1,0 +1,38 @@
+﻿@page
+@model ManageCourse.Pages.Teacher.GetNotifiedModel
+@{
+    ViewData["Title"] = "GetNotified";
+}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">🔔 Thông báo của bạn</h2>
+
+    @if (Model.UserNotifications == null || !Model.UserNotifications.Any())
+    {
+        <div class="alert alert-info text-center" role="alert">
+            📭 Bạn không có thông báo nào.
+        </div>
+    }
+    else
+    {
+        <div class="list-group">
+            @foreach (var notification in Model.UserNotifications)
+            {
+                <div class="list-group-item list-group-item-action shadow-sm p-3 mb-3 border rounded">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="mb-1">
+                            📢 <strong>@(notification.Sender?.FullName ?? "Hệ thống")</strong>
+                        </h5>
+                        <small class="text-muted">
+                            @notification.CreatedAt?.ToString("dd/MM/yyyy HH:mm")
+                        </small>
+                    </div>
+                    <p class="mb-1">@notification.Message</p>
+                </div>
+            }
+        </div>
+    }
+
+    <div class="text-center mt-4">
+        <a asp-page="/Teacher/Dashboard" class="btn btn-primary">🔙 Quay lại Dashboard</a>
+    </div>
+</div>

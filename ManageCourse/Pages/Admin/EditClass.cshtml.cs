@@ -20,9 +20,6 @@ namespace ManageCourse.Pages.Admin
 
         [BindProperty]
         public Class ClassItem { get; set; } = new();
-
-        public List<User> Students { get; set; } = new();
-        public List<User> AllStudents { get; set; } = new();
         public SelectList Teachers { get; set; } = new(new List<User>(), "UserId", "FullName");
         public SelectList Courses { get; set; } = new(new List<Course>(), "CourseId", "CourseName");
         public string SuccessMessage { get; set; } = string.Empty;
@@ -41,8 +38,6 @@ namespace ManageCourse.Pages.Admin
                 return NotFound();
             }
 
-            Students = ClassItem.Enrollments.Select(e => e.Student).ToList();
-            AllStudents = await _context.Users.Where(u => u.Role == "Student").ToListAsync();
             Teachers = new SelectList(await _context.Users.Where(u => u.Role == "Teacher").ToListAsync(), "UserId", "FullName");
             Courses = new SelectList(await _context.Courses.ToListAsync(), "CourseId", "CourseName");
 
@@ -67,38 +62,6 @@ namespace ManageCourse.Pages.Admin
             SuccessMessage = "Cập nhật lớp học thành công!";
 
             // Load lại danh sách để hiển thị đầy đủ
-            return await OnGetAsync(ClassItem.ClassId);
-        }
-
-
-        public async Task<IActionResult> OnPostRemoveStudentAsync(int studentId)
-        {
-            var enrollment = await _context.Enrollments
-                .FirstOrDefaultAsync(e => e.StudentId == studentId && e.ClassId == ClassItem.ClassId);
-
-            if (enrollment != null)
-            {
-                _context.Enrollments.Remove(enrollment);
-                await _context.SaveChangesAsync();
-            }
-
-            SuccessMessage = "Xóa sinh viên thành công!";
-            return await OnGetAsync(ClassItem.ClassId);
-        }
-
-        public async Task<IActionResult> OnPostAddStudentAsync(int newStudentId)
-        {
-            var exists = await _context.Enrollments
-                .AnyAsync(e => e.StudentId == newStudentId && e.ClassId == ClassItem.ClassId);
-
-            if (!exists)
-            {
-                var enrollment = new Enrollment { StudentId = newStudentId, ClassId = ClassItem.ClassId };
-                _context.Enrollments.Add(enrollment);
-                await _context.SaveChangesAsync();
-                SuccessMessage = "Thêm sinh viên thành công!";
-            }
-
             return await OnGetAsync(ClassItem.ClassId);
         }
     }

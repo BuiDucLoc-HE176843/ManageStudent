@@ -43,7 +43,13 @@
             <div class="card-body">
                 <h5 class="card-title">📢 Gửi thông báo</h5>
                 <p class="card-text">Gửi thông báo quan trọng đến học sinh và giáo viên.</p>
-                <a asp-page="/Admin/SendNotification" class="btn btn-danger">Gửi ngay</a>
+                <button class="btn btn-danger" id="toggleNotification">Gửi ngay</button>
+
+                <!-- Hai ô lựa chọn ẩn ban đầu -->
+                <div id="notificationOptions" class="mt-3" style="display: none;">
+                    <a asp-page="/Admin/StudentNotice" class="btn btn-info">📩 Gửi cho học sinh</a>
+                    <a asp-page="/Admin/TeacherNotice" class="btn btn-secondary">📩 Gửi cho giáo viên</a>
+                </div>
             </div>
         </div>
 
@@ -81,11 +87,18 @@
 
     /* Thêm margin-bottom cho nút đăng xuất để không bị che */
     .text-center.mt-5 {
-        margin-bottom: 50px; /* Bạn có thể điều chỉnh giá trị này để có khoảng cách phù hợp */
+        margin-bottom: 50px;
     }
 
     /* Thêm margin dưới footer để tránh bị đè lên */
     footer {
-        margin-top: 30px; /* Điều chỉnh giá trị này nếu cần */
+        margin-top: 30px;
     }
 </style>
+
+<script>
+    document.getElementById("toggleNotification").addEventListener("click", function() {
+        var options = document.getElementById("notificationOptions");
+        options.style.display = options.style.display === "none" ? "block" : "none";
+    });
+</script>

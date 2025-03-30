@@ -20,6 +20,10 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/AddClass.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRkQ2xhc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/AddUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRkVXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -52,8 +56,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlU2NvcmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/ManageStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlU3R1ZGVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/StudentNotice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3R1ZGVudE5vdGljZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/TeacherNotice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVGVhY2hlck5vdGljZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/UpdateOtherProfile.cshtml]
@@ -122,6 +138,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/EditProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxFZGl0UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/GetNotified.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxHZXROb3RpZmllZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/ListClass.cshtml]

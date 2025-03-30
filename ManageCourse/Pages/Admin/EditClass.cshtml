@@ -4,83 +4,62 @@
     ViewData["Title"] = "Chỉnh sửa lớp học";
 }
 
-<h2>Chỉnh sửa lớp học</h2>
+<h2 class="text-center mb-4 text-primary"><i class="fas fa-edit"></i> Chỉnh sửa lớp học</h2>
 
 @if (!string.IsNullOrEmpty(Model.SuccessMessage))
 {
-    <div class="alert alert-success">@Model.SuccessMessage</div>
+    <div class="alert alert-success alert-dismissible fade show d-flex align-items-center" role="alert">
+        <i class="fas fa-check-circle me-2"></i> @Model.SuccessMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 }
 
-<form method="post">
-    <input type="hidden" asp-for="ClassItem.ClassId" />
+<div class="card shadow-lg p-4 border-0 rounded-3">
+    <form method="post">
+        <input type="hidden" asp-for="ClassItem.ClassId" />
 
-    <div class="mb-3">
-        <label class="form-label">Tên lớp</label>
-        <input type="text" asp-for="ClassItem.ClassName" class="form-control" />
-    </div>
+        <div class="mb-3">
+            <label class="form-label fw-bold"><i class="fas fa-school"></i> Tên lớp</label>
+            <input type="text" asp-for="ClassItem.ClassName" class="form-control border-primary shadow-sm" placeholder="Nhập tên lớp" required />
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Giáo viên</label>
-        <select asp-for="ClassItem.TeacherId" asp-items="Model.Teachers" class="form-control"></select>
-    </div>
+        <div class="mb-3">
+            <label class="form-label fw-bold"><i class="fas fa-chalkboard-teacher"></i> Giáo viên</label>
+            <select asp-for="ClassItem.TeacherId" asp-items="Model.Teachers" class="form-select border-primary shadow-sm" required></select>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Môn học</label>
-        <select asp-for="ClassItem.CourseId" asp-items="Model.Courses" class="form-control"></select>
-    </div>
+        <div class="mb-3">
+            <label class="form-label fw-bold"><i class="fas fa-book"></i> Môn học</label>
+            <select asp-for="ClassItem.CourseId" asp-items="Model.Courses" class="form-select border-primary shadow-sm" required></select>
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Số buổi học</label>
-        <input type="number" asp-for="ClassItem.TotalSessions" class="form-control" />
-    </div>
+        <div class="mb-3">
+            <label class="form-label fw-bold"><i class="fas fa-calendar-alt"></i> Số buổi học</label>
+            <input type="number" asp-for="ClassItem.TotalSessions" class="form-control border-primary shadow-sm" min="1" readonly />
+        </div>
 
-    <div class="mb-3">
-        <label class="form-label">Trạng thái</label>
-        <select asp-for="ClassItem.Status" class="form-control">
-            <option value="1">Đang mở</option>
-            <option value="2">Đã kết thúc</option>
-        </select>
-    </div>
+        <div class="mb-3">
+            <label class="form-label fw-bold"><i class="fas fa-toggle-on"></i> Trạng thái</label>
+            <select asp-for="ClassItem.Status" class="form-select border-primary shadow-sm">
+                <option value="1">Đang mở</option>
+                <option value="2">Đã kết thúc</option>
+            </select>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-</form>
+        <div class="d-flex justify-content-between">
+            <a asp-page="/Admin/Dashboard" class="btn btn-secondary shadow-sm">
+                <i class="fas fa-home"></i> Trang chủ
+            </a>
+            <button type="submit" class="btn btn-success shadow-sm">
+                <i class="fas fa-save"></i> Lưu thay đổi
+            </button>
+            <a asp-page="ManageStudent" asp-route-classId="@Model.ClassItem.ClassId" class="btn btn-primary shadow-sm">
+                <i class="fas fa-users"></i> Quản lý sinh viên
+            </a>
+        </div>
+    </form>
+</div>
 
-<h3>Danh sách học sinh</h3>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Tên sinh viên</th>
-            <th>Email</th>
-            <th>Thao tác</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var student in Model.Students)
-        {
-            <tr>
-                <td>@student.FullName</td>
-                <td>@student.Email</td>
-                <td>
-                    <form method="post" asp-page-handler="RemoveStudent">
-                        <input type="hidden" name="studentId" value="@student.UserId" />
-                        <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<h3>Thêm học sinh vào lớp</h3>
-<form method="post" asp-page-handler="AddStudent">
-    <div class="mb-3">
-        <label class="form-label">Chọn học sinh</label>
-        <select name="newStudentId" class="form-control">
-            @foreach (var student in Model.AllStudents)
-            {
-                <option value="@student.UserId">@student.FullName</option>
-            }
-        </select>
-    </div>
-    <button type="submit" class="btn btn-success">Thêm học sinh</button>
-</form>
+@section Scripts {
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+}
