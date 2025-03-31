@@ -1,4 +1,5 @@
 using ManageCourse.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -6,6 +7,7 @@ using System.Linq;
 
 namespace ManageCourse.Pages.Student
 {
+    [Authorize(Roles = "Student")]
     public class DashboardModel : PageModel
     {
         private readonly LearningManagementSystemContext _context;
@@ -36,7 +38,7 @@ namespace ManageCourse.Pages.Student
         public IActionResult OnPostLogout()
         {
             HttpContext.Session.Clear();
-            return RedirectToPage("/Login/Login");
+            return RedirectToPage("/Login/Logout");
         }
     }
 }

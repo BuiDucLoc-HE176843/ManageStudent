@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ManageCourse.Pages.Teacher
 {
+    [Authorize(Roles = "Teacher")]
     public class EditProfileModel : PageModel
     {
         private readonly LearningManagementSystemContext _context;

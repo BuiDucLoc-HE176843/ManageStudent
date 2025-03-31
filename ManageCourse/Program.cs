@@ -1,12 +1,11 @@
-using ManageCourse.Models;
+﻿using ManageCourse.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
-//trong<l� t�n class database>
-builder.Services.AddDbContext<LearningManagementSystemContext>
-    (option => option.UseSqlServer(builder.Configuration.GetConnectionString("DB")));
+builder.Services.AddDbContext<LearningManagementSystemContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DB")));
 
-//d�ng session
+// Cấu hình session
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(opt =>
 {
@@ -14,6 +13,14 @@ builder.Services.AddSession(opt =>
     opt.Cookie.HttpOnly = true;
     opt.Cookie.IsEssential = true;
 });
+
+// Cấu hình Authentication bằng Cookie
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/Login"; // Đường dẫn khi người dùng chưa đăng nhập
+        options.AccessDeniedPath = "/Login/Warning"; // Đường dẫn khi người dùng không có quyền truy cập
+    });
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -24,10 +31,9 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-//d�ng session
+
 app.UseSession();
 
 app.UseHttpsRedirection();
@@ -35,7 +41,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+// Sử dụng authentication và authorization
+app.UseAuthentication(); // Để sử dụng authentication
+app.UseAuthorization();  // Để sử dụng authorization
 
 app.MapRazorPages();
 

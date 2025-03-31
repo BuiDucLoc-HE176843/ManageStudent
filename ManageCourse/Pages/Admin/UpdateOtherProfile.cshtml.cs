@@ -1,10 +1,12 @@
 ﻿using ManageCourse.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
 
 namespace ManageCourse.Pages.Admin
 {
+    [Authorize(Roles = "Admin")]
     public class UpdateOtherProfileModel : PageModel
     {
         private readonly LearningManagementSystemContext _context;

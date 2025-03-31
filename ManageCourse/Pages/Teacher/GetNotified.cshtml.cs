@@ -1,10 +1,12 @@
 ﻿using ManageCourse.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
 namespace ManageCourse.Pages.Teacher
 {
+    [Authorize(Roles = "Teacher")]
     public class GetNotifiedModel : PageModel
     {
         private readonly LearningManagementSystemContext _context;

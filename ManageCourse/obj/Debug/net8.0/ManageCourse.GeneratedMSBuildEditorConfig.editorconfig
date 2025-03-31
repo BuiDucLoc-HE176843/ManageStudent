@@ -9,173 +9,181 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ManageCourse
 build_property.RootNamespace = ManageCourse
-build_property.ProjectDir = D:\Code PRN\Prn222\ManageCourse\ManageCourse\
+build_property.ProjectDir = D:\commit\ManageStudent\ManageCourse\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Code PRN\Prn222\ManageCourse\ManageCourse
+build_property.MSBuildProjectDirectory = D:\commit\ManageStudent\ManageCourse
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/AddClass.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/AddClass.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRkQ2xhc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/AddUser.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/AddUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRkVXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/CheckAttendance.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/CheckAttendance.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ2hlY2tBdHRlbmRhbmNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/Dashboard.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/EditClass.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/EditClass.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRWRpdENsYXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/ManageAttendance.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/ManageAttendance.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlQXR0ZW5kYW5jZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/ManageCourses.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/ManageCourses.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlQ291cnNlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/ManageOtherProfile.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/ManageOtherProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlT3RoZXJQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/ManageScore.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/ManageScore.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlU2NvcmUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/ManageStudent.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/ManageStudent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cTWFuYWdlU3R1ZGVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/Profile.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/Schedule.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/Schedule.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU2NoZWR1bGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/StudentNotice.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/StudentNotice.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3R1ZGVudE5vdGljZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/TeacherNotice.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/TeacherNotice.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVGVhY2hlck5vdGljZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Admin/UpdateOtherProfile.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Admin/UpdateOtherProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXBkYXRlT3RoZXJQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Error.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Index.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Login/ForgotPassword.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Login/ForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cRm9yZ290UGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Login/Login.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Privacy.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Login/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/commit/ManageStudent/ManageCourse/Pages/Login/Warning.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cV2FybmluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/commit/ManageStudent/ManageCourse/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Student/Attendance.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Student/Attendance.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxBdHRlbmRhbmNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Student/Cources.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Student/Cources.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxDb3VyY2VzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Student/Dashboard.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Student/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Student/Notifications.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Student/Notifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxOb3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Student/Profile.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Student/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Student/Schedule.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Student/Schedule.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxTY2hlZHVsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Student/Score.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Student/Score.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3R1ZGVudFxTY29yZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/Attend.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Teacher/Attend.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxBdHRlbmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/CheckAttendance.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Teacher/CheckAttendance.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxDaGVja0F0dGVuZGFuY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/Dashboard.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Teacher/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/EditProfile.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Teacher/EditProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxFZGl0UHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/GetNotified.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Teacher/GetNotified.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxHZXROb3RpZmllZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/ListClass.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Teacher/ListClass.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxMaXN0Q2xhc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/Notification.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Teacher/Notification.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxOb3RpZmljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/Schedule.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Teacher/Schedule.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxTY2hlZHVsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Teacher/Score.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Teacher/Score.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVhY2hlclxTY29yZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/_ViewImports.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/_ViewStart.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Code PRN/Prn222/ManageCourse/ManageCourse/Pages/Shared/_Layout.cshtml]
+[D:/commit/ManageStudent/ManageCourse/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-99gjzdyird

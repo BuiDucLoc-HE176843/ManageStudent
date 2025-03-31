@@ -1,4 +1,5 @@
 ﻿using ManageCourse.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ManageCourse.Pages.Admin
 {
+    [Authorize(Roles = "Admin")]
     public class AddUserModel : PageModel
     {
         private readonly LearningManagementSystemContext _context;

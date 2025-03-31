@@ -1,4 +1,5 @@
 ﻿using ManageCourse.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ManageCourse.Pages.Admin
 {
+    [Authorize(Roles = "Admin")]
     public class EditClassModel : PageModel
     {
         private readonly LearningManagementSystemContext _context;

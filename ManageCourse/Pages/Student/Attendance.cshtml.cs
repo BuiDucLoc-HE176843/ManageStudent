@@ -1,4 +1,5 @@
 ﻿using ManageCourse.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ManageCourse.Pages.Student
 {
+    [Authorize(Roles = "Student")]
     public class AttendanceModel : PageModel
     {
         private readonly LearningManagementSystemContext _context;
