@@ -37,6 +37,7 @@ namespace ManageCourse.Pages.Student
                 .SelectMany(c => c.Schedules)
                 .Include(s => s.Class)
                 .ThenInclude(c => c.Teacher)
+                .Where(c => c.Class.Status != 2)
                 .ToListAsync();
 
             // Kiểm tra nếu không có lịch học

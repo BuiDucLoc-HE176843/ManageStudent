@@ -34,6 +34,7 @@ namespace ManageCourse.Pages.Teacher
                 .Include(s => s.Class)
                 .ThenInclude(c => c.Teacher) // Lấy tên giáo viên
                 .Where(s => s.Class.TeacherId == teacherId)
+                .Where(c => c.Class.Status != 2)
                 .ToListAsync();
 
             // Nếu không có lịch học

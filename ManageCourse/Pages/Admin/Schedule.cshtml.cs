@@ -26,6 +26,7 @@ namespace ManageCourse.Pages.Admin
             Schedules = await _context.Schedules
                 .Include(s => s.Class)
                 .ThenInclude(c => c.Teacher) // Lấy tên giáo viên
+                .Where(c => c.Class.Status !=2)
                 .ToListAsync();
 
             Classes = await _context.Classes
